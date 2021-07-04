@@ -36,8 +36,7 @@ def fetchVarsFromFile(file,directory,exclude_list):
 
 #with given a list of filename as key and  vars as values this#function return a list of conflict in each file
 def checkConflicts(filesVariables):
-     #objective {"rcc":{"lab":["eureka","zipkin"]}}
-     #           file    ref    confliiiiiiicts
+    
      conflicts={}
      listOfKeys=list(filesVariables)
      lenght=len(filesVariables)
@@ -89,20 +88,13 @@ def main():
     exclude=module.params.get('exclude')
     file=module.params.get('file')
     filesVariables={}
-    #folder=sys.argv[1]
-    exclude_list=["lab","prp","prd","rci","rcc"]
-
-    #end declaration section
-    print("lfolder")
-    print("exclude")
-    print("file")
+    
 
 
 
 
     filesVariables=fetchVarsFromFile(file,folder,exclude)
     conflicts=checkConflicts(filesVariables)
-    #checkConflicts(filesVariables)
     result=dict(
       changed=False,
       conflicts=conflicts,
