@@ -1,6 +1,6 @@
 - hosts: localhost
   tasks:
-    - name: test2
+    - name: compare multiple environments
       EagleEye: 
          folder: dir
          exclude:
