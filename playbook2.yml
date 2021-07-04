@@ -1,0 +1,14 @@
+- hosts: localhost
+  tasks:
+    - name: test2
+      crawlandcompare: 
+         folder: dir
+         exclude:
+           - local
+           - remote
+         file: env.yml
+      register: res
+      become: true
+       
+
+    - debug: var=res  
