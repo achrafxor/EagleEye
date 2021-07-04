@@ -3,7 +3,7 @@
 
 
 
-EagleEye is multiple files yaml comparateur that shows missing conflicts between multiple folders and files it is very useful for obtaining a good visibility when deploying in multiple environments.
+EagleEye is multiple files yaml comparateur ansible module that shows missing conflicts between multiple folders and files it is very useful for obtaining a good visibility when deploying in multiple environments.
 
 
 ## setup
