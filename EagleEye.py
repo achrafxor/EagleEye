@@ -32,11 +32,14 @@ def fetchVarsFromFile(file,directory,exclude_list):
             if len(value.split())>0:
                 if value.split()[0]=="-":
                    cleanedReaders[key].append(value.split()[1])
+                if value.split()[0][-1]==":":
+                   cleanedReaders[key].append(value.split()[0])
+
     return cleanedReaders
 
 #with given a list of filename as key and  vars as values this#function return a list of conflict in each file
 def checkConflicts(filesVariables):
-    
+
      conflicts={}
      listOfKeys=list(filesVariables)
      lenght=len(filesVariables)
@@ -88,16 +91,33 @@ def main():
     exclude=module.params.get('exclude')
     file=module.params.get('file')
     filesVariables={}
-    
-
-
-
+    #end variable declaration
 
     filesVariables=fetchVarsFromFile(file,folder,exclude)
     conflicts=checkConflicts(filesVariables)
+    # improving the display
+    for key,value in conflicts.items():
+       splittedPath=key.split("/")
+       new_key="base ==>" + splittedPath[-2]+"/"+splittedPath[-1]
+       conflicts[new_key]=conflicts.pop(key)
+       for key2 ,value2 in value.items():
+          splittedPath2=key2.split("/")
+          new_key2=" ref ==>" + splittedPath2[-2]+"/"+splittedPath2[-1]
+          value[new_key2]=value.pop(key2)
+          index=0
+          for i  in range(len(value2)):
+              value2[i]="+ " +value2[i]
+
+
+
+
+
+
+
     result=dict(
       changed=False,
       conflicts=conflicts,
+
     )
 
     module.exit_json(**result)
