@@ -98,15 +98,16 @@ def main():
     # improving the display
     for key,value in conflicts.items():
        splittedPath=key.split("/")
-       new_key="base ==>" + splittedPath[-2]+"/"+splittedPath[-1]
+       new_key="missing vars detected in: " + splittedPath[-2]+"/"+splittedPath[-1]
        conflicts[new_key]=conflicts.pop(key)
        for key2 ,value2 in value.items():
           splittedPath2=key2.split("/")
-          new_key2=" ref ==>" + splittedPath2[-2]+"/"+splittedPath2[-1]
+          new_key2=" ref==> " + splittedPath2[-2]+"/"+splittedPath2[-1]
           value[new_key2]=value.pop(key2)
           index=0
           for i  in range(len(value2)):
-              value2[i]="+ " +value2[i]
+              value2[i]=" + " +value2[i]
+
 
 
 
