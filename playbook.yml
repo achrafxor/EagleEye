@@ -2,13 +2,12 @@
   tasks:
     - name: compare multiple environments
       EagleEye: 
-         folder: dir
+         folder: infrastructure
          exclude:
-           - local
-           - remote
-         file: env.yml
-      register: res
+           - dev
+         file: tools.yml
+      register: result
       become: true
        
 
-    - debug: var=res  
+    - debug: var=result  
